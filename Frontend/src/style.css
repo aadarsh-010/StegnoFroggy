@@ -1,0 +1,39 @@
+html,
+body,
+#root
+{ 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(217, 239, 247);
+}
+.homepage{
+    height : 100%;
+    display: flex;
+}
+ .pcanvas{
+    width: 50%;    
+}
+/*
+.intro{
+    width: 50%;
+    height: 90%;
+    margin-right: 0;
+} */
+
+.introtext{
+    font-size: xx-large;
+    font-weight: 1000;
+    font-style: initial;
+    background-color: aliceblue;
+    padding: 20px;
+    margin-top:40px; margin-bottom: 40px;
+    opacity: 0.5;
+    height: 50%;
+    text-align: center;
+    width:50%;
+    margin-right: 10px;
+    
+}
