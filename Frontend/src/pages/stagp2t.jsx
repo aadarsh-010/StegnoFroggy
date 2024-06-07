@@ -1,6 +1,7 @@
 import React from "react";
 import { useState , useRef} from "react";
 import "./stag.css";
+import Modal from "../components/modal";
 
 export default function Stag2() {
     const [fileUploaded, setFileUploaded] = useState(false);
@@ -84,6 +85,8 @@ export default function Stag2() {
             placeholder="Extracted message will appear here"
           />
         </div>
+
+       
       </div>
     </>
   );

@@ -1,11 +1,14 @@
 import React, { useState, useRef } from "react";
+
 import "./stag.css";
+import Modal from "../components/modal";
 
 const Steganography = () => {
   const [fileUploaded, setFileUploaded] = useState(false);
   const [image, setImage] = useState(null);
   const [message, setMessage] = useState("");
   const [downloadLink, setDownloadLink] = useState("");
+  const [isopen, setisopen] = useState(false);
   const imageCanvasRef = useRef(null);
 
   const handleImageUpload = (event) => {
@@ -56,6 +59,8 @@ const Steganography = () => {
       const dataURL = canvas.toDataURL();
       setDownloadLink(dataURL);
     };
+
+    setisopen(true);
   };
 
   const handleDownload = () => {
@@ -84,6 +89,16 @@ const Steganography = () => {
           <button onClick={createImageCanvas} disabled={!fileUploaded}>
             Hide Message
           </button>
+
+          <Modal
+            open={isopen}
+            onclose={() => {
+              setisopen(false);
+            }}
+            navigateto={false}            
+          >
+            Your message is now encrypted.
+          </Modal>
         </div>
 
         <div className="image-section">
