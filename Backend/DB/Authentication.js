@@ -10,8 +10,8 @@ router.get('/', (req,res)=>{
 
 
 router.post('/register', async (req,res)=>{
-
-    const {username,password}=req.body;
+    console.log("yoiiiis")
+    const {username,password}= req.body;
 
     if(!username || !password){
         return res.status(422).json({error: "fill all the fields"});

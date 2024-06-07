@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
 
+var cors = require('cors')
+app.use(cors())
 
 //.env =  ki kya zrwt hai bhai teri jab teko upload hi nhi krre???
 dotenv.config({path:"./config.env"});

@@ -70,37 +70,39 @@ const Steganography = () => {
   };
 
   return (
-    <div className="container">
-      <h1>Steganography Tool</h1>
-      <div className="upload-section">
-        <input type="file" onChange={handleImageUpload} />
-        <textarea
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder="Enter message to hide"
-          className="message-input"
-        />
-        <button onClick={createImageCanvas} disabled={!fileUploaded}>
-          Hide Message
-        </button>
-      </div>
+    <div className="body">
+      <div className="container">
+        <h1>Steganography Tool</h1>
+        <div className="upload-section">
+          <input type="file" onChange={handleImageUpload} />
+          <textarea
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="Enter message to hide"
+            className="message-input"
+          />
+          <button onClick={createImageCanvas} disabled={!fileUploaded}>
+            Hide Message
+          </button>
+        </div>
 
-      <div className="image-section">
-        {image && (
-          <>
-            <p>Uploaded Image:</p>
-            <img src={image} alt="Uploaded" className="uploaded-image" />
-          </>
-        )}
-      </div>
+        <div className="image-section">
+          {image && (
+            <>
+              <p>Uploaded Image:</p>
+              <img src={image} alt="Uploaded" className="uploaded-image" />
+            </>
+          )}
+        </div>
 
-      <div className="download-section">
-        <button onClick={handleDownload} disabled={!downloadLink}>
-          Download Modified Image
-        </button>
-      </div>
+        <div className="download-section">
+          <button onClick={handleDownload} disabled={!downloadLink}>
+            Download Modified Image
+          </button>
+        </div>
 
-      <canvas ref={imageCanvasRef} style={{ display: "none" }}></canvas>
+        <canvas ref={imageCanvasRef} style={{ display: "none" }}></canvas>
+      </div>
     </div>
   );
 };
