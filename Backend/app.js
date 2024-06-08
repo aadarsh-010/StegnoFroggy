@@ -2,10 +2,14 @@ const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
 
-var cors = require('cors')
-app.use(cors())
+const cors = require('cors');
+//this thing is required to set so as to set cookies for owr website else using cores it will not allow to set cookies; 
+const corsOptions = {
+    origin: true, //included origin as true
+    credentials: true, //included credentials as true
+};
 
-//.env =  ki kya zrwt hai bhai teri jab teko upload hi nhi krre???
+app.use(cors(corsOptions));
 dotenv.config({path:"./config.env"});
 require("./DB/conn.js");
 const User = require("./DB/schema.js");
