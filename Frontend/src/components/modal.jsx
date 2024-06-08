@@ -21,7 +21,6 @@ export default function Modal({ open, children, onclose, navigateto }) {
   return ReactDom.createPortal(
     open && (
       <>
-        {/* <div style={OVERLAY_STYLES} /> */}
         <div style={MODAL_STYLES}>
           {children}
           <div style={{ display: "flex" }}>
