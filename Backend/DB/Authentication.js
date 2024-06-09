@@ -1,7 +1,7 @@
 const express = require('express');
 const User = require('./schema');
 var bcrypt = require('bcryptjs');
-
+const jwt = require('jsonwebtoken');
 const router = express.Router();
 
 router.get('/', (req,res)=>{
@@ -10,11 +10,11 @@ router.get('/', (req,res)=>{
 
 
 router.post('/register', async (req,res)=>{
-    console.log("yoiiiis")
-    const {username,password}= req.body;
+
+    const {username,password}=req.body;
 
     if(!username || !password){
-        return res.status(422).json({error: "fill all the fields"});
+        return res.status(422).json({message: "fill all the fields"});
     }
 
     try{
@@ -22,7 +22,7 @@ router.post('/register', async (req,res)=>{
        const repeat_user= await User.findOne({username : username});
 
        if(repeat_user){
-        return res.status(422).json({error: "username already Exists !!"});
+        return res.status(422).json({message: "username already Exists !!"});
        }
 
        const new_user = new User({username  , password });
@@ -54,8 +54,13 @@ router.post('/login', async (req,res)=>{
 
             // comparing for hash value that we created to store in DB for password
             const isMatch = await bcrypt.compare(password,userlogin.password);
+            // we are generating jwt token when a user logged in
+            const usertoken = await userlogin.generateAuthToken();
+            console.log(usertoken);
+            res.cookie("pigeonJWT",usertoken);
              if(isMatch){
                 return res.json({message: "User login successfully !"});
+
             }
             else{
                 return res.status(400).json({error: "Wrong credentials"});
