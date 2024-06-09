@@ -7,9 +7,9 @@ export default function Stag2() {
   const [fileUploaded, setFileUploaded] = useState(false);
   const [image, setImage] = useState(null);
   const [extractedMessage, setExtractedMessage] = useState("");
-  const [reciever, setreciever] = useState("");
-  const [sender, setsender] = useState("");
-  const [isopen, setisopen] = useState(false);
+  const [receiver, setReceiver] = useState("");
+  const [sender, setSender] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
   const user = "56789";
   const imageCanvas2Ref = useRef(null);
 
@@ -54,13 +54,20 @@ export default function Stag2() {
       }
 
       if (message.startsWith("Valid\n")) {
-        setsender(message.substring(6, 6 + id_length));
-        setreciever(message.substring(6 + id_length, 6 + 2 * id_length));
-        if (user !== reciever) setisopen(true);
-        else
-          setExtractedMessage(
-            message.slice(6 + 2 * id_length).replace("\0", "")
-          );
+        const senderID = message.substring(6, 6 + id_length);
+        const receiverID = message.substring(6 + id_length, 6 + 2 * id_length);
+        const extractedMsg = message.slice(6 + 2 * id_length).replace("\0", "");
+
+        // Update state accordingly
+        setSender(senderID);
+        setReceiver(receiverID);
+
+        // Check if the message is meant for the current user
+        if (user !== receiverID) {
+          setIsOpen(true); // Show modal if the message is not meant for the user
+        } else {
+          setExtractedMessage(extractedMsg); // Set the extracted message if it is meant for the user
+        }
       } else {
         alert("No hidden message found.");
       }
@@ -69,9 +76,9 @@ export default function Stag2() {
   useEffect(() => {
     console.log("User:", user);
     console.log("Sender:", sender);
-    console.log("Receiver:", reciever);
+    console.log("Receiver:", receiver);
     console.log("Extracted Message:", extractedMessage);
-  }, [sender, reciever, extractedMessage]);
+  }, [sender, receiver, extractedMessage]);
 
   return (
     <>
@@ -101,8 +108,8 @@ export default function Stag2() {
         </div>
       </div>
 
-      {isopen && (
-        <Modal open={isopen} onclose={() => setisopen(false)}>
+      {isOpen && (
+        <Modal open={isOpen} onclose={() => setIsOpen(false)}>
           Alert: This message is not meant for you!!
         </Modal>
       )}

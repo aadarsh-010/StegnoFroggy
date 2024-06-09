@@ -16,7 +16,7 @@ const MODAL_STYLES = {
 export default function Modal({ open, children, onclose, navigateto }) {
   const navigate = useNavigate();
   const navigateHome = () => {
-    navigate("/home");
+    navigate("/");
   };
   return ReactDom.createPortal(
     open && (
