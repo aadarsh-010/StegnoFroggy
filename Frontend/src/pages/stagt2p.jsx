@@ -9,6 +9,8 @@ const Steganography = () => {
   const [message, setMessage] = useState("");
   const [downloadLink, setDownloadLink] = useState("");
   const [isopen, setisopen] = useState(false);
+  const [user, setuser] = useState("");
+  const [reciever, setreciever] = useState("");
   const imageCanvasRef = useRef(null);
 
   const handleImageUpload = (event) => {
@@ -36,7 +38,7 @@ const Steganography = () => {
       const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       const pixelData = imageData.data;
 
-      const messageWithHeader = "Valid\n" + message;
+      const messageWithHeader = "Valid\n" + user + reciever + message;
       const binaryMessage = [];
       for (let i = 0; i < messageWithHeader.length; i++) {
         const charCode = messageWithHeader.charCodeAt(i);
@@ -85,20 +87,38 @@ const Steganography = () => {
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Enter message to hide"
             className="message-input"
+            style={{ rows: 1 }}
           />
+          <textarea
+            value={user}
+            onChange={(e) => setuser(e.target.value)}
+            placeholder="Enter user-id"
+            className="message-input"
+          />
+
+          <textarea
+            value={reciever}
+            onChange={(e) => setreciever(e.target.value)}
+            placeholder="Enter reciever's-id"
+            className="message-input"
+            style={{ rows: 1 }}
+          />
+
           <button onClick={createImageCanvas} disabled={!fileUploaded}>
             Hide Message
           </button>
 
-          <Modal
-            open={isopen}
-            onclose={() => {
-              setisopen(false);
-            }}
-            navigateto={false}            
-          >
-            Your message is now encrypted.
-          </Modal>
+          {isopen && (
+            <Modal
+              open={isopen}
+              onclose={() => {
+                setisopen(false);
+              }}
+              // navigateto={false}
+            >
+              Your message is now encrypted.
+            </Modal>
+          )}
         </div>
 
         <div className="image-section">
