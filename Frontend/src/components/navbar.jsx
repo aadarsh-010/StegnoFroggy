@@ -1,28 +1,57 @@
-import React from "react";
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import  Button  from "react-bootstrap/Button";
-import {Link} from "react-router-dom";
-// import  Button  from "react-bootstrap/Button";
+import React, {useState}  from "react";
+import { NavLink } from "react-router-dom";
+import "./CSS/navbar.css";
 
 
-export default function PNavbar() {
-  return (
-    <>
-      <Navbar bg="dark" data-bs-theme="dark">
-        <Container>
-          <Navbar.Brand href="#home">Pigeon</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-          </Nav>
-        </Container>
+function Navbar(props) {
+  
 
-        <Link to="/signup" type="button" variant="primary">Sign in</Link>{' '}
-        <Link to="/login" type="button" variant="primary">Log in</Link>{' '}
-      </Navbar>
-    </>
-  );
-}
+  const [dark,changetheme] = useState(false);
+
+
+window.addEventListener('scroll', ()=>{
+    console.log(window.scrollY);
+    if(window.scrollY>=80){
+      changetheme(true);
+    }else{
+      changetheme(false);
+    }
+  });
+
+
+    return (
+      <>  
+        {/* <nav  className={`navbar navbar-expand-sm navbar-dark fixed-top ${dark} `} > */}
+        <nav  className={dark?"navbar navbar-expand-sm navbar-dark fixed-top navbar_scrolled":"navbar navbar-expand-sm navbar-dark fixed-top"}  >
+    <div className="container-fluid">
+      <NavLink className="navbar-brand" to="/">StegoFrog</NavLink>
+      <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span className="navbar-toggler-icon"></span>
+      </button>
+      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <li className="nav-item">
+            <NavLink className="nav-link active" aria-current="page" to="/">Home</NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/signup">signup</NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/login">login</NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/stagt">stag1</NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/stagp">stag2</NavLink>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+      </>
+    );
+  }
+  
+  
+  export default Navbar;
