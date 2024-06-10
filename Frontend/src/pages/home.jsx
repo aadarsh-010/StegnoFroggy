@@ -5,6 +5,7 @@ import { Canvas } from "@react-three/fiber";
 import PNavbar from "../components/navbar.jsx";
 import Splinemodel from "../components/spline.jsx";
 import "../style.css";
+import About from "../components/about.jsx";
 
 export default function Home() {
   return (
@@ -12,8 +13,9 @@ export default function Home() {
       <PNavbar />
       <div className="homepage">
         <Splinemodel />
-        <div className="intro">"Do you want to send a secret msg"</div>
       </div>
+      <h1 style={{textAlign:"center"}}>lets explore what stag do?</h1>
+      <About/>
     </>
   );
 }
