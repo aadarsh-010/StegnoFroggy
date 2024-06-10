@@ -26,7 +26,6 @@ app.use(require("./DB/Authentication.js"));  // doubt - why using middle where;?
 // });
 
 
-
 app.listen(5000, ()=>{
     console.log("connected to port 5000");
 });

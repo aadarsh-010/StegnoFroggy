@@ -84,7 +84,7 @@ export default function Stag2() {
     <>
       <div className="container">
         <input type="file" onChange={handleImageUpload} />
-        <button onClick={() => extractMessage(5)} disabled={!fileUploaded}>
+        <button onClick={() => extractMessage(24)} disabled={!fileUploaded}>
           Extract Message
         </button>
 

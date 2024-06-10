@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 
 import "./stag.css";
 import Modal from "../components/modal";
+import SearchBar from "../components/search";
 
 const Steganography = () => {
   const [fileUploaded, setFileUploaded] = useState(false);
@@ -76,8 +77,14 @@ const Steganography = () => {
     document.body.removeChild(link);
   };
 
+  const handleSelectUser = (userId) => {
+    setreciever(userId);
+    console.log(reciever);
+  };
+
   return (
     <div className="body">
+      <SearchBar  onSelectUser={handleSelectUser}/>
       <div className="container">
         <h1>Steganography Tool</h1>
         <div className="upload-section">
