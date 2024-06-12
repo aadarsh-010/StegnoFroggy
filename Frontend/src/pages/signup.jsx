@@ -15,6 +15,7 @@ export default function Signup() {
   const [nickname, setnickname] = useState("");
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
+  const [message, setmessage] = useState("");
   const [open, setopen] = useState(false);
 
   const navigate = useNavigate(); // Ensure this hook is at the top level of the functional component
@@ -43,17 +44,17 @@ export default function Signup() {
       console.log("Response from server:", response);
 
       if (response.status === 200 || response.status === 201) {
-        alert("Registered successfully!");
+        setmessage("Registered successfully!");
         setnickname("");
         setusername("");
         setpassword("");
-        navigate("/"); // Uncomment if you want to redirect upon successful registration
+        // setopen(true);
+        // navigate("/"); // Uncomment if you want to redirect upon successful registration
       } else {
         console.log("Registration failed with status:", response.status);
-        alert("Failed to register.");
+        setmessage("Failed to register.");
       }
 
-      setopen(true);
     } catch (error) {
       console.error("Error during registration:", error);
 
@@ -62,8 +63,9 @@ export default function Signup() {
         console.error("Error response data:", error.response.data);
         console.error("Error response status:", error.response.status);
       }
-      alert("An error occurred during registration.");
+      setmessage("An error occurred during registration.");
     }
+    setopen(true);
   };
 
   return (
@@ -106,7 +108,7 @@ export default function Signup() {
       </Form.Group>
 
       <Modal open={open} onclose={() => setopen(false)} navigateto={true}>
-        You have been registered succesfully !!
+        {message}
       </Modal>
 
       <Form.Group className="login">

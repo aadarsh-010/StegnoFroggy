@@ -109,5 +109,11 @@ router.get("/search", async (req, res) => {
   }
 });
 
+router.get('/usercokkie', cookiecheck, async (req,res)=>{
+  console.log("middle ware call hora");
+  res.send(req.rootUser);
+  
+});
+
 module.exports = router;
 // kyu export krra hai jbki conn.js me to nhi krna pdra export...... and kb kb export krna pdta h???;

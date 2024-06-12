@@ -4,16 +4,18 @@ import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { FaLock } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import { useNavigate } from "react-router-dom"; // Correct import for navigation
+import { useNavigate, Link } from "react-router-dom"; // Correct import for navigation
 
 import "./login.css";
 import Modal from "../components/modal";
+import Navbar from "../components/navbar";
 
 export default function Login() {
   const navigate = useNavigate(); // Ensure this hook is at the top level of the functional component
   const [isopen, setisopen] = useState(false);
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
+  const [message, setmessage] = useState("");
 
   const clickhandler = async (e) => {
     e.preventDefault();
@@ -34,14 +36,15 @@ export default function Login() {
         //alert("Logged in successfully!");
         setusername("");
         setpassword("");
+        setmessage("Succesfully logged in !!");
         // navigate("/"); // Uncomment if you want to redirect upon successful login
       } else {
         console.log("Login failed with status:", response.status);
-        alert("Failed to Log-in.");
+        setmessage("Failed to Log-in.");
       }
     } catch (error) {
       console.error("Error logging-in:", error);
-      alert("An error occurred while trying to log-in.");
+      setmessage("An error occurred while trying to log-in.");
     }
 
     setisopen(true);
@@ -49,6 +52,7 @@ export default function Login() {
 
   return (
     <Form className="wrapper">
+      <Navbar/>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <MdEmail className="icon" />
@@ -68,13 +72,16 @@ export default function Login() {
           onChange={(e) => setpassword(e.target.value)}
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Remember me" />
-      </Form.Group>
+      
       <Form.Group className="submit-btn">
         <Button className="submit" onClick={clickhandler}>
           Login
         </Button>
+      </Form.Group>
+
+      <Form.Group className="register">
+        <Form.Text>Doesn't have an account? </Form.Text>
+        <Link to="/signup">Register</Link>
       </Form.Group>
 
       <Modal
@@ -84,7 +91,7 @@ export default function Login() {
         }}
         navigateto={true}
       >
-        You are now Logged in !!
+        {message}
       </Modal>
     </Form>
   );

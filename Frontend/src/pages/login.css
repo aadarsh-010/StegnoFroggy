@@ -62,3 +62,12 @@ body {
   background-color: #320d02; /* Darker shade of orange */
   transform: scale(0.98); /* Slightly scale down to give a pressed effect */
 }
+
+.register {
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  align-items: center;
+  margin-top: 25px;
+  font-weight: bold;
+}
