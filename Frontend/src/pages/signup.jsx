@@ -12,24 +12,58 @@ import "./signup.css";
 import Modal from "../components/modal";
 
 export default function Signup() {
-  const [name, setname] = useState("");
-  const [email, setemail] = useState("");
+  const [nickname, setnickname] = useState("");
+  const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
   const [open, setopen] = useState(false);
 
   const navigate = useNavigate(); // Ensure this hook is at the top level of the functional component
 
-  const clickhandler = () => {
-    // e.preventDefault(); //so that no default value is entered by mistake
-    // axios
-    //   .post("http://localhost:5000/register", { email, password })
-    //   .then((result) => {
-    //     console.log(result);
-    //     navigate("/"); //to move to home as soon as u regiter
-    //   })
-    //   .catch((err) => console.log(err));
-    setopen(true);
-    // navigate("/"); //to move to home as soon as u regiter
+  const clickhandler = async (e) => {
+    e.preventDefault(); // Prevent default form submission
+
+    // Log the data being sent
+    console.log("Attempting to register with data:", {
+      nickname,
+      username,
+      password,
+    });
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/register",
+        { nickname, username, password },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log("Response from server:", response);
+
+      if (response.status === 200 || response.status === 201) {
+        alert("Registered successfully!");
+        setnickname("");
+        setusername("");
+        setpassword("");
+        navigate("/"); // Uncomment if you want to redirect upon successful registration
+      } else {
+        console.log("Registration failed with status:", response.status);
+        alert("Failed to register.");
+      }
+
+      setopen(true);
+    } catch (error) {
+      console.error("Error during registration:", error);
+
+      // Log the response data if available
+      if (error.response) {
+        console.error("Error response data:", error.response.data);
+        console.error("Error response status:", error.response.status);
+      }
+      alert("An error occurred during registration.");
+    }
   };
 
   return (
@@ -39,17 +73,17 @@ export default function Signup() {
         <FaUser className="icon" />
         <Form.Control
           placeholder="Enter your name"
-          onChange={(e) => setname(e.target.value)}
+          onChange={(e) => setnickname(e.target.value)}
         />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
+        <Form.Label>User Id</Form.Label>
         <MdEmail className="icon" />
         <Form.Control
           type="email"
           placeholder="Enter email"
-          onChange={(e) => setemail(e.target.value)}
+          onChange={(e) => setusername(e.target.value)}
         />
       </Form.Group>
 

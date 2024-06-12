@@ -7,14 +7,19 @@ const Feedback = require("./models/Feedback");
 
 const router = express.Router();
 
+const cookieParser = require("cookie-parser");
+router.use(cookieParser()); //middle ware hai taki kabhi bhi ye parser call ho to middle warecall jojaye
+
+const cookiecheck = require("./cookiecheck");
+
 router.get("/", (req, res) => {
   res.send("hello");
 });
 
 router.post("/register", async (req, res) => {
-  const { username, password } = req.body;
+  const { nickname, username, password } = req.body;
 
-  if (!username || !password) {
+  if (!nickname || !username || !password) {
     return res.status(422).json({ message: "fill all the fields" });
   }
 
@@ -25,7 +30,7 @@ router.post("/register", async (req, res) => {
       return res.status(422).json({ message: "username already Exists !!" });
     }
 
-    const new_user = new User({ username, password });
+    const new_user = new User({ nickname, username, password });
 
     await new_user.save();
     res.status(201).json({ message: "User Registered Successfully" });
@@ -75,10 +80,8 @@ router.post("/feedback", async (req, res) => {
   }
   try {
     const newFeedback = new Feedback({ name, email, message });
-     await newFeedback.save();
-    res
-      .status(201)
-      .json({ message: "Feedback submitted successfully" })
+    await newFeedback.save();
+    res.status(201).json({ message: "Feedback submitted successfully" });
     //   .send(newFeedback);
   } catch (error) {
     console.error("Error saving feedback:", error);
@@ -86,21 +89,23 @@ router.post("/feedback", async (req, res) => {
   }
 });
 
-router.get('/search', async (req, res) => {
+router.get("/search", async (req, res) => {
   const query = req.query.nickname;
- console.log('Recieved', query);
+  console.log("Recieved", query);
   if (!query) {
-    console.log('Name query parameter is missing');
-    return res.status(400).json({ error: 'username query parameter is required' });
+    console.log("Name query parameter is missing");
+    return res
+      .status(400)
+      .json({ error: "username query parameter is required" });
   }
 
   try {
-    const users = await User.find({ nickname: new RegExp(query, 'i') }); // Case-insensitive search
-    console.log('Found users:', users); // Log the results
+    const users = await User.find({ nickname: new RegExp(query, "i") }); // Case-insensitive search
+    console.log("Found users:", users); // Log the results
     res.status(200).json(users);
   } catch (error) {
-    console.error('Error fetching users:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    console.error("Error fetching users:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 
