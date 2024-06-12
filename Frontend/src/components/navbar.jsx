@@ -4,35 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import "./CSS/navbar.css";
 
 function Navbar(props) {
-  const [logged_user_data, chng] = useState({});
-  const [flag, Cod] = useState(false);
-
-  const fetchuser = async () => {
-    try {
-      const userdata = await fetch("http://localhost:5000/usercokkie", {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      });
-
-      const data = await userdata.json();
-      //  if we didnt get the data so the function is goto catch(err) and eroro will be shown iske neehce ka console bhi print nhi hoga
-      Cod(true);
-      chng(data);
-      console.log("data came -" + data.username);
-    } catch (err) {
-      Cod(false);
-      console.log(data + " user login nhi hai");
-    }
-  };
-
-  useEffect(() => {
-    console.log("fetchuser");
-    fetchuser();
-  }, []);
+  
 
   const [dark, changetheme] = useState(false);
 
@@ -103,14 +75,14 @@ function Navbar(props) {
                 </NavLink>
               </li>
               <li className="nav-item dis">
-                {flag === true && (
+                {props.usercame === true && (
                   <img
                     className="profile_icon grow"
                     src="../assets/profile_icon.jpg"
                     alt="Avatar"
                   />
                 )}
-                {flag === false && (
+                {props.usercame === false && (
                   <button
                     className="signin_btn"
                     type="button"

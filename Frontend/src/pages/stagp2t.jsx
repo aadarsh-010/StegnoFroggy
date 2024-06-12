@@ -3,14 +3,16 @@ import { useState, useRef, useEffect } from "react";
 import "./stag.css";
 import Modal from "../components/modal";
 
-export default function Stag2() {
+export default function Stag2(props) {
   const [fileUploaded, setFileUploaded] = useState(false);
   const [image, setImage] = useState(null);
   const [extractedMessage, setExtractedMessage] = useState("");
   const [receiver, setReceiver] = useState("");
   const [sender, setSender] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const user = "56789";
+  var user = props._id;
+  // if user not logged in then variable user will be undefined
+  // console.log("user id - 0" + user);
   const imageCanvas2Ref = useRef(null);
 
   const handleImageUpload = (event) => {
