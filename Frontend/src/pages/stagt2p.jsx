@@ -11,8 +11,8 @@ const Steganography = (props) => {
   const [downloadLink, setDownloadLink] = useState("");
   const [isopen, setisopen] = useState(false);
   //const [user, setuser] = useState("");
-  var user = props._id;
-  // console.log("user - " + user);
+  var user = props.logged_user._id;
+  //  console.log("user - " + user);
   const [reciever, setreciever] = useState("");
   const imageCanvasRef = useRef(null);
 

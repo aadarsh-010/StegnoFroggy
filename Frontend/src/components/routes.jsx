@@ -50,7 +50,7 @@ export default function Proutes() {
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/stagt" element={<Steganography logged_user={logged_user_data}/>}></Route>
-        <Route path="/stagp" element={<Stag2 />}></Route>
+        <Route path="/stagp" element={<Stag2 logged_user={logged_user_data}/>}></Route>
         <Route path="/feedback" element={<FeedbackForm/>}></Route>
         <Route path="/search" element={<SearchBar/>}></Route>
       </Routes>

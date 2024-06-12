@@ -10,9 +10,9 @@ export default function Stag2(props) {
   const [receiver, setReceiver] = useState("");
   const [sender, setSender] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  var user = props._id;
+  var user = props.logged_user._id;
   // if user not logged in then variable user will be undefined
-  // console.log("user id - 0" + user);
+  //  console.log("user id - 0" + user);
   const imageCanvas2Ref = useRef(null);
 
   const handleImageUpload = (event) => {
