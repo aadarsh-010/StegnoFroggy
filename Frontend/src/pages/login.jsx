@@ -8,7 +8,7 @@ import { useNavigate, Link } from "react-router-dom"; // Correct import for navi
 
 import "./login.css";
 import Modal from "../components/modal";
-import Navbar from "../components/navbar";
+
 
 export default function Login() {
   const navigate = useNavigate(); // Ensure this hook is at the top level of the functional component
@@ -52,7 +52,7 @@ export default function Login() {
 
   return (
     <Form className="wrapper">
-      <Navbar/>
+      
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <MdEmail className="icon" />

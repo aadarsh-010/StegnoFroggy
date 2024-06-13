@@ -4,13 +4,15 @@ import "./stag.css";
 import Modal from "../components/modal";
 import SearchBar from "../components/search";
 
-const Steganography = () => {
+const Steganography = (props) => {
   const [fileUploaded, setFileUploaded] = useState(false);
   const [image, setImage] = useState(null);
   const [message, setMessage] = useState("");
   const [downloadLink, setDownloadLink] = useState("");
   const [isopen, setisopen] = useState(false);
-  const [user, setuser] = useState("");
+  //const [user, setuser] = useState("");
+  var user = props.logged_user._id;
+  //  console.log("user - " + user);
   const [reciever, setreciever] = useState("");
   const imageCanvasRef = useRef(null);
 
@@ -84,8 +86,8 @@ const Steganography = () => {
 
   return (
     <div className="body">
-      <SearchBar  onSelectUser={handleSelectUser}/>
       <div className="container">
+      <SearchBar  onSelectUser={handleSelectUser}/>
         <h1>Steganography Tool</h1>
         <div className="upload-section">
           <input type="file" onChange={handleImageUpload} />
@@ -96,12 +98,12 @@ const Steganography = () => {
             className="message-input"
             style={{ rows: 1 }}
           />
-          <textarea
+          {/* <textarea
             value={user}
             onChange={(e) => setuser(e.target.value)}
             placeholder="Enter user-id"
             className="message-input"
-          />
+          /> */}
 
           <textarea
             value={reciever}
