@@ -1,29 +1,47 @@
 import React from "react";
 import "./CSS/about.css";
 import { Fade } from "react-awesome-reveal";
+import { useNavigate } from "react-router-dom"; // Correct import for navigation
 
 export default function About() {
+  
+  const navigate = useNavigate();
+
+
+  const stagpage=()=>{
+    navigate("/stagt");
+  }
+  const Knowmore=()=>{
+    window.open("https://www.youtube.com/watch?v=TWEXCYQKyDc&list=RDQMjD5qK2DNGUk&start_radio=1", '_blank').focus();
+  }
+
+  const documentation=()=>{
+    window.open("https://github.com/Amessaa/Stegno", '_blank').focus();
+  }
+
+
+
   return (
     <>
        <div className="section">
-        <div className="container" >
+        <div className="Contt" >
           <Fade direction="left"  triggerOnce="true" duration="1500" >
             <div className="content-section">
                 <div className="title">
-                    <h1>About us</h1>
+                    <h1> Steganography and Its History</h1>
                 </div>
                 <div className="content">
-                    <h3>Lorem ipsum,  olorum enim, exercitationem iure voluptate aspernatur!</h3>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit voluptatum quam itaque minus perferendis. Doloremque voluptate expedita cupiditate iure, in, at aspernatur nam tenetur fugit, animi mollitia natus ducimus facere.</p>
+                    <h3></h3>
+                    <p>Steganography is the secret agent of the information world, hiding data within messages or objects so cleverly you'd never notice. The term comes from the Greek "steganos" (covered) and "graphein" (writing). Imagine it as invisible ink, but much cooler. This technique dates back to 440 BC when Herodotus wrote about hidden messages in wax tablets. Over the years, methods have evolved from invisible ink and microdots to today’s digital techniques, all designed to keep information hidden in plain sight. </p>
                     <div className="button">
-
+                     
                     </div>
                 </div>
             </div>
             </Fade>
             <Fade direction="right"  triggerOnce="true" duration="1500">
-            <div className="image-section">
-                <img src="..\assets\secuirty-badge.jpg"/>
+            <div className="image-section margincorrection">
+                <img src="..\assets\history (1).webp"/>
             </div>
             </Fade>
         </div>
@@ -34,24 +52,24 @@ export default function About() {
       {/* -------------------------------------------- */}
 
       <div className="section">
-        <div className="container" >
-          <Fade direction="left"  triggerOnce="true" duration="1500" >
-            <div className="content-section">
+        <div className="Contt" >
+          <Fade direction="right"  triggerOnce="true" duration="1500" >
+            <div className="content-section-mid">
                 <div className="title">
-                    <h1>About us</h1>
+                    <h1>Image Steganography</h1>
                 </div>
                 <div className="content">
-                    <h3>Lorem ipsum,  olorum enim, exercitationem iure voluptate aspernatur!</h3>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit voluptatum quam itaque minus perferendis. Doloremque voluptate expedita cupiditate iure, in, at aspernatur nam tenetur fugit, animi mollitia natus ducimus facere.</p>
+                    <h3></h3>
+                    <p>As the name suggests, Image Steganography refers to the process of hiding data within an image file. The image selected for this purpose is called the cover image and the image obtained after steganography is called the stego image.</p>
                     <div className="button">
-
+                    <button onClick={Knowmore} type="button" class="btn btn-dark btn-lg">Know more</button>
                     </div>
                 </div>
             </div>
             </Fade>
-            <Fade direction="right"  triggerOnce="true" duration="1500">
+            <Fade direction="left"  triggerOnce="true" duration="1500">
             <div className="image-section">
-                <img src="..\assets\secuirty-badge.jpg"/>
+                <img src="..\assets\imagestag.jpeg"/>
             </div>
             </Fade>
         </div>
@@ -62,23 +80,24 @@ export default function About() {
 
 
       <div className="section">
-        <div className="container" >
+        <div className="Contt" >
           <Fade direction="left"  triggerOnce="true" duration="1500" >
             <div className="content-section">
                 <div className="title">
-                    <h1>About us</h1>
+                    <h1>What we exactly doing</h1>
                 </div>
                 <div className="content">
-                    <h3>Lorem ipsum,  olorum enim, exercitationem iure voluptate aspernatur!</h3>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit voluptatum quam itaque minus perferendis. Doloremque voluptate expedita cupiditate iure, in, at aspernatur nam tenetur fugit, animi mollitia natus ducimus facere.</p>
+                    <h3></h3>
+                    <p>In our project, we've given the traditional LSB method a makeover by tweaking the last two bits of each image pixel channel to hide data. This means each pixel can hold a tiny piece of the hidden message, like a digital puzzle, with one character per pixel. By adjusting the least significant bits, we sneak in data without ruining the image's good looks. This technique strikes a perfect balance between data capacity and image fidelity, keeping the hidden data undetectable under casual inspection. Our project is like a spy thriller, showing just how effective this method is for secret communication.</p>
                     <div className="button">
-
+                    <button onClick={stagpage} type="button" class="btn btn-primary btn-lg me-1">Lets Try This!</button>
+                    <button onClick={documentation} type="button" class="btn btn-primary btn-lg me-1">Documentaion</button>
                     </div>
                 </div>
             </div>
             </Fade>
             <Fade direction="right"  triggerOnce="true" duration="1500">
-            <div className="image-section">
+            <div className="image-section margincorrection">
                 <img src="..\assets\secuirty-badge.jpg"/>
             </div>
             </Fade>
