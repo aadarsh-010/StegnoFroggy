@@ -51,6 +51,7 @@ export default function Login() {
   };
 
   return (
+    <div className="whole">
     <Form className="wrapper">
       
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -94,5 +95,6 @@ export default function Login() {
         {message}
       </Modal>
     </Form>
+    </div>
   );
 }

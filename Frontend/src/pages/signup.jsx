@@ -69,6 +69,7 @@ export default function Signup() {
   };
 
   return (
+    <div className="whole">
     <Form className="wrapper">
       <Form.Group className="mb-3">
         <Form.Label>User-name</Form.Label>
@@ -116,5 +117,6 @@ export default function Signup() {
         <Link to="/login">Login</Link>
       </Form.Group>
     </Form>
+    </div>
   );
 }

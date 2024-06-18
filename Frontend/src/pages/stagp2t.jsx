@@ -10,7 +10,9 @@ export default function Stag2(props) {
   const [receiver, setReceiver] = useState("");
   const [sender, setSender] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  var user = props.logged_user._id;
+  
+  var user = "6668893e49e83469171654c6";
+  // var user = props.logged_user._id;
   // if user not logged in then variable user will be undefined
   //  console.log("user id - 0" + user);
   const imageCanvas2Ref = useRef(null);

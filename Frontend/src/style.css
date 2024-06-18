@@ -9,13 +9,41 @@ body,
     height: 100%;
     /* background: slateblue;     */
     overflow-x: hidden;
+    background-image: url(../assets/acs.jpg);
+    
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
+
+.adimg {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+    
+  }
 .homepage{
     height : 100%;
+    background: #ffffff;
     /* display: flex; */
 }
  .pcanvas{
     width: 50%;    
+}
+.gradiaentDiv{
+    height: 100px;
+  width: 100%;
+  /* background-color: #9075C5; */
+  background: #8b73c4;
+
+background: linear-gradient(270deg, hsla(258, 41%, 61%, 1) 28%, rgba(255, 255, 255, 0) 99%);
+
+background: -moz-linear-gradient(270deg, hsla(258, 41%, 61%, 1) 28%, rgba(255, 255, 255, 0) 99%);
+
+background: -webkit-linear-gradient(270deg, hsla(258, 41%, 61%, 1) 28%, rgba(255, 255, 255, 0) 99%);
+
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#8A71C4", endColorstr="#FFFFFF", GradientType=1 );
 }
 
 .intro{
@@ -40,3 +68,7 @@ body,
     margin-right: 10px;
     
 }
+
+
+
+

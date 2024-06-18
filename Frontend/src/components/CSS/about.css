@@ -2,11 +2,13 @@
 .section{
     width: 100%;
     min-height: 90vh;
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
     overflow: hidden;
+    /* background: rgb(2,0,36); */
+    /* background: linear-gradient(143deg, rgba(2,0,36,1) 0%, rgba(108,44,133,1) 42%, rgba(10,21,121,1) 100%); */
 }
 
-.container{
+.Contt{
     width: 80%;
     display: block;
     margin: auto;
@@ -18,9 +20,21 @@
 
 }
 
-.image-section{
+/* this below code making centre dive left align */
+.content-section-mid{
     float: right;
-    width: 40%;
+    width: 55%;
+
+}
+
+.image-section{
+    float: left;
+    width: 35%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.26), 0 6px 20px 0 rgba(0, 0, 0, 0.418);
+}
+
+.margincorrection{
+    margin-left: 7%;
 }
 .image-section img{
     width: 100%;
@@ -48,7 +62,7 @@
 
 @media screen and (max-width: 768px){
     
-.container{
+.Contt{
     width: 80%;
     display: block;
     margin: auto;
@@ -77,3 +91,9 @@
     margin-top: 30px;
 }
 }
+
+
+h1 {
+    font-size: 30px;
+    
+  }

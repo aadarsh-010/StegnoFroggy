@@ -6,13 +6,13 @@
   font-size: large;
 }
 
-body {
+.whole {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url(../assets/signup-bg_2.jpg);
+  background-image: url(../assets/BackG.jpg);
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;  
