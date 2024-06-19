@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './CSS/search.css'; // Create this file for styling
+import './CSS/search.css'; // Ensure this file exists with the proper styles
 
 export default function SearchBar({ onSelectUser }) {
-    
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
+  const [selectedUserId, setSelectedUserId] = useState(null);
 
   useEffect(() => {
     const fetchResults = async () => {
-      if (query.length > 0) {
+      if (query.length > 0 && !selectedUserId) { // Only fetch if there's a query and no user is selected
         try {
           const response = await axios.get('http://localhost:5000/search', {
             params: { nickname: query },
@@ -30,34 +30,46 @@ export default function SearchBar({ onSelectUser }) {
         setResults([]);
       }
     };
-  
+
     const timeoutId = setTimeout(() => {
       fetchResults();
     }, 300);
-  
+
     return () => clearTimeout(timeoutId);
-  }, [query]);
-  
+  }, [query, selectedUserId]);
+
+  const handleSelectUser = (user) => {
+    setSelectedUserId(user._id);
+    setQuery(user.username); // Set the search box value to the selected user's name
+    setResults([]); // Clear the search results
+    onSelectUser(user._id); // Notify parent component of selected user's ID
+  };
 
   return (
     <div className="search-bar-container">
       <input
         type="text"
         value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={(e) => {
+          setQuery(e.target.value);
+          setSelectedUserId(null); // Clear selection when typing
+        }}
         placeholder="Search by name"
         className="search-input"
       />
       {results.length > 0 && (
         <ul className="results-list">
           {results.map((user) => (
-            <li key={user._id}  onClick={() => onSelectUser(user._id)}>
-              {user.name}  {user.username}
+            <li
+              key={user._id}
+              onClick={() => handleSelectUser(user)}
+              className={selectedUserId === user._id ? 'selected' : ''}
+            >
+              {user.name} ({user.username})
             </li>
           ))}
         </ul>
       )}
-      {/* {selectedUserId && <p>Selected User ID: {selectedUserId}</p>} */}
     </div>
   );
 }

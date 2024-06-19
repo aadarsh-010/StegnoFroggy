@@ -7,7 +7,6 @@ export default function About() {
   
   const navigate = useNavigate();
 
-
   const stagpage=()=>{
     navigate("/stagt");
   }
