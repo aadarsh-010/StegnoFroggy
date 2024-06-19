@@ -8,3 +8,4 @@ export default function App() {
     <Spline scene="https://prod.spline.design/vRljTMV34XAZpo8x/scene.splinecode" />
   );
 }
+
