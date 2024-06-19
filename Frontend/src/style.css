@@ -9,9 +9,12 @@ body,
     height: 100%;
     /* background: slateblue;     */
     overflow-x: hidden;
+
     background-image: url(../assets/2.jpg);
-    /* background-image: #ffff; */
-      background-size: 120%;
+    /* background-image: #ffff; *
+    
+  background-size: 100%;
+
   background-repeat: no-repeat;
   /* background-position: centre; */
   background-position: 50% 60%;
