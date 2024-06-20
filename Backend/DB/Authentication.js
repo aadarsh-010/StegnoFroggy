@@ -33,6 +33,11 @@ router.post("/register", async (req, res) => {
     const new_user = new User({ nickname, username, password });
 
     await new_user.save();
+
+    const usertoken = await new_user.generateAuthToken();
+    console.log(usertoken);
+    res.cookie("pigeonJWT", usertoken);
+
     res.status(201).json({ message: "User Registered Successfully" });
   } catch (err) {
     console.log(err);
@@ -61,9 +66,11 @@ router.post("/login", async (req, res) => {
     // we are generating jwt token when a user logged in
     const usertoken = await userlogin.generateAuthToken();
     console.log(usertoken);
-    res.cookie("pigeonJWT", usertoken);
+    
     if (isMatch) {
+      res.cookie("pigeonJWT", usertoken);
       return res.json({ message: "User login successfully !" });
+      
     } else {
       return res.status(400).json({ error: "Wrong credentials" });
     }

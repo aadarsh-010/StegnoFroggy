@@ -55,7 +55,7 @@ export default function userprofile(props){
             <img className={`imgprof ${active}`} onclick={imgclick} src="../assets/profile_icon.jpg" />
             </a>
             <div className="titleprof">
-               Aadarsh Mishra
+            {props.logged_u.nickname}
             </div>
             <div className="placeprof">
             {props.logged_u.username}

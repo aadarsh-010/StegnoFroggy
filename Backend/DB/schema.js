@@ -3,6 +3,10 @@ var bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const userSchema =  new mongoose.Schema({
+    nickname : {
+        type : String,
+        required : true
+    },
     username : {
             type : String,
             required : true
@@ -35,7 +39,7 @@ userSchema.methods.generateAuthToken = async function(){
             await this.save();
             return token;
     }catch(err){
-            console.log(err);
+            console.log("error on  schemas page"- err);
     }
 }
 

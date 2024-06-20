@@ -38,7 +38,8 @@ export default function Signup() {
           headers: {
             "Content-Type": "application/json",
           },
-        }
+          withCredentials: true // Include cookies in the request if needed
+        } 
       );
 
       console.log("Response from server:", response);
