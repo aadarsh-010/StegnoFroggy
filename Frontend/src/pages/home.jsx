@@ -6,6 +6,8 @@ import Splinemodel from "../components/spline.jsx";
 import "../style.css";
 import About from "../components/about.jsx";
 import FeedbackForm from "./feedback.jsx";
+import Steganography from "./stagt2p.jsx";
+import Stag2 from "./stagp2t.jsx";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -57,6 +59,8 @@ export default function Home() {
         ></path>
       </svg>
       <About />
+      <Steganography logged_user={"null"}/>
+      <Stag2 logged_user={"null"}/>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
         <path
           fill="#fe5196"

@@ -63,7 +63,7 @@ export default function userprofile(props){
          </div>
          <div className="contentprof">
             <p>
-               User Interface Designer and <br/>front-end developer
+               {/* User Interface Designer and <br/>front-end developer */}
             </p>
             <div className="buttonsprof">
                <div className="btnprof">
