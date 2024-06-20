@@ -1,4 +1,4 @@
-.containerSTAGT {
+.container {
   max-width: 600px;
   margin: 20px auto;
   padding: 20px;
@@ -43,7 +43,7 @@ textarea {
   height: 30px; /* Adjust height as needed */
 }
 
-.stag2tss {
+button {
   margin-top: 10px;
   padding: 10px 20px;
   background-color: #007bff;
@@ -53,7 +53,7 @@ textarea {
   cursor: pointer;
 }
 
-.stag2tss:disabled {
+button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
@@ -85,13 +85,13 @@ textarea {
   cursor: pointer;
 }
 
-.imgst {
+img {
   margin-top: 10px;
   border-radius: 4px;
 }
 
 @media (max-width: 768px) {
-  .containerSTAGT {
+  .container {
     padding: 10px;
   }
 }

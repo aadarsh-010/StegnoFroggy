@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import Modal from "../components/modal";
 import SearchBar from "../components/search";
@@ -10,11 +10,17 @@ const Steganography = (props) => {
   const [message, setMessage] = useState("");
   const [downloadLink, setDownloadLink] = useState("");
   const [isopen, setisopen] = useState(false);
-  //const [user, setuser] = useState("");
-  var user = props.logged_user._id;
+
+  var user = "$$$$$$$$$$$$$$$$$$$$$$$$";
+  if (props.logged_user._id) user = props.logged_user._id;
   //  console.log("user - " + user);
-  const [reciever, setreciever] = useState("");
+  const [reciever, setreciever] = useState("$$$$$$$$$$$$$$$$$$$$$$$$");
   const imageCanvasRef = useRef(null);
+
+  useEffect(() => {
+    console.log("sending_user: ", user);
+    console.log("reciever: ", reciever);
+  }, [user, reciever]);
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -112,7 +118,7 @@ const Steganography = (props) => {
             style={{ rows: 1 }}
           /> */}
 
-          <button className="aadssd" onClick={createImageCanvas} disabled={!fileUploaded}>
+          <button onClick={createImageCanvas} disabled={!fileUploaded}>
             Hide Message
           </button>
 
@@ -140,7 +146,7 @@ const Steganography = (props) => {
           </div>
 
           <div className="download-section">
-            <button className="aadssd" onClick={handleDownload} disabled={!downloadLink}>
+            <button onClick={handleDownload} disabled={!downloadLink}>
               Download Modified Image
             </button>
           </div>

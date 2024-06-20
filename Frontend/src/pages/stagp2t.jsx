@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import Cookies from "js-cookie";
+import axios from "axios";
 
 import Modal from "../components/modal";
 import "./stagp2t.css";
@@ -9,33 +9,48 @@ export default function Stag2(props) {
   const [image, setImage] = useState(null);
   const [extractedMessage, setExtractedMessage] = useState("");
   const [receiver, setReceiver] = useState("");
-  const [sender, setSender] = useState("");
+  const [sender, setSender] = useState("$$$$$$$$$$$$$$$$$$$$$$$$");
+  const [sendername, setSendername] = useState("Anonymous sender");
   const [isOpen, setIsOpen] = useState(false);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState("$$$$$$$$$$$$$$$$$$$$$$$$");
   const imageCanvas2Ref = useRef(null);
+
+  const fetch_sender = async () => {
+    try {
+      const res = await axios.get(`http://localhost:5000/sendername/${sender}`);
+      setSendername(res.data.username);
+      console.log(`sendername: ${sendername}`);
+      // return username;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    // Fetch the sender's name whenever the sender state changes and it's a valid ID
+    if (sender && sender !== "$$$$$$$$$$$$$$$$$$$$$$$$") {
+      console.log("Fetching sender name for sender ID:", sender);
+      fetch_sender();
+    }
+  }, [sender]); // Add sender as a dependency
 
   useEffect(() => {
     // Debug: Check props.logged_user directly
     console.log("Logged User from Props:", props.logged_user);
 
-    if (props.logged_user) {
+    if (props.logged_user._id) {
       setUser(props.logged_user._id);
     } else {
-      // Try to get the user from a cookie as a fallback
-      const userCookie = Cookies.get("localhost");
-      if (userCookie) {
-        const userData = JSON.parse(userCookie);
-        setUser(userData._id);
-      } else {
-        console.error("User is undefined and no cookie found.");
-      }
+      setUser("$$$$$$$$$$$$$$$$$$$$$$$$");
     }
-  }, [props.logged_user]); 
+  }, [props.logged_user]);
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
       const url = URL.createObjectURL(file);
+      setExtractedMessage("");
+      setSendername("Anonymous Sender");
       setImage(url);
       setFileUploaded(true);
     }
@@ -78,14 +93,15 @@ export default function Stag2(props) {
         const extractedMsg = message.slice(6 + 2 * id_length).replace("\0", "");
 
         // Update state accordingly
-        setSender(senderID);
         setReceiver(receiverID);
+        // setSender(senderID);      
 
         // Check if the message is meant for the current user
-        if (user !== receiverID) {
+        if ( receiverID!=="$$$$$$$$$$$$$$$$$$$$$$$$" && user !== receiverID) {
           setIsOpen(true); // Show modal if the message is not meant for the user
         } else {
           setExtractedMessage(extractedMsg); // Set the extracted message if it is meant for the user
+          setSender(senderID)
         }
       } else {
         alert("No hidden message found.");
@@ -100,24 +116,23 @@ export default function Stag2(props) {
     console.log("Extracted Message:", extractedMessage);
   }, [user, sender, receiver, extractedMessage]);
 
-  // If user is still undefined, you may want to render a loading or error message
-  if (!user) {
-    return <div>Loading or user not found...</div>;
-  }
-
   return (
     <>
-      <div className="containerSTAGT">
+      <div className="container">
         <div className="select">
-          <input type="file" onChange={handleImageUpload} className="input_file"/>
-          <button className="stag2tss" onClick={() => extractMessage(24)} disabled={!fileUploaded}>
+          <input
+            type="file"
+            onChange={handleImageUpload}
+            className="input_file"
+          />
+          <button onClick={() => extractMessage(24)} disabled={!fileUploaded}>
             Extract Message
           </button>
         </div>
         <canvas ref={imageCanvas2Ref} style={{ display: "none" }}></canvas>
         <div className="result">
           <p>Hidden Image:</p>
-          {image && <img className="imgst" src={image} alt="Uploaded" width={350} height={200} />}
+          {image && <img src={image} alt="Uploaded" width={350} height={200} />}
 
           <textarea
             className="extracted-item"
@@ -127,7 +142,7 @@ export default function Stag2(props) {
           />
           <textarea
             className="Sent-by"
-            value={sender}
+            value={sendername}
             readOnly
             placeholder="The message is sent by the sender"
           />

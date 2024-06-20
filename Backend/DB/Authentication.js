@@ -122,6 +122,29 @@ router.get('/usercokkie', cookiecheck, async (req,res)=>{
   
 });
 
+router.get("/sendername/:id", async (req, res) => {
+  const userId = req.params.id;
+
+  try {
+    // Find the user by ID
+    const user = await User.findOne({ _id: userId });
+
+    if (user) {
+      // Respond with the user data if found
+      res.json({ username: user.username });
+    } else {
+      // Respond with a 404 if the user is not found
+      res.status(404).json({ message: "User not found" });
+    }
+  } catch (error) {
+    // Handle database errors
+    res
+      .status(500)
+      .json({ message: "Error fetching user", error: error.message });
+  }
+});
+
+
 router.get('/logout', async (req,res)=>{
   
     console.log("User logged out backend call success");
