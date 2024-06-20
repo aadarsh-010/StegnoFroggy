@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react";
 
-import "./stag.css";
 import Modal from "../components/modal";
 import SearchBar from "../components/search";
+import "./stagt2p.css";
 
 const Steganography = (props) => {
   const [fileUploaded, setFileUploaded] = useState(false);
@@ -87,8 +87,8 @@ const Steganography = (props) => {
   return (
     <div className="body">
       <div className="container">
-      <SearchBar  onSelectUser={handleSelectUser}/>
         <h1>Steganography Tool</h1>
+        <SearchBar onSelectUser={handleSelectUser} />
         <div className="upload-section">
           <input type="file" onChange={handleImageUpload} />
           <textarea
@@ -96,7 +96,6 @@ const Steganography = (props) => {
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Enter message to hide"
             className="message-input"
-            style={{ rows: 1 }}
           />
           {/* <textarea
             value={user}
@@ -105,15 +104,15 @@ const Steganography = (props) => {
             className="message-input"
           /> */}
 
-          <textarea
+          {/* <textarea
             value={reciever}
             onChange={(e) => setreciever(e.target.value)}
             placeholder="Enter reciever's-id"
             className="message-input"
             style={{ rows: 1 }}
-          />
+          /> */}
 
-          <button onClick={createImageCanvas} disabled={!fileUploaded}>
+          <button className="aadssd" onClick={createImageCanvas} disabled={!fileUploaded}>
             Hide Message
           </button>
 
@@ -130,21 +129,22 @@ const Steganography = (props) => {
           )}
         </div>
 
-        <div className="image-section">
-          {image && (
-            <>
-              <p>Uploaded Image:</p>
-              <img src={image} alt="Uploaded" className="uploaded-image" />
-            </>
-          )}
-        </div>
+        <div className="up_down">
+          <div className="image-section">
+            {image && (
+              <>
+                <p>Uploaded Image:</p>
+                <img src={image} alt="Uploaded" className="uploaded-image" />
+              </>
+            )}
+          </div>
 
-        <div className="download-section">
-          <button onClick={handleDownload} disabled={!downloadLink}>
-            Download Modified Image
-          </button>
+          <div className="download-section">
+            <button className="aadssd" onClick={handleDownload} disabled={!downloadLink}>
+              Download Modified Image
+            </button>
+          </div>
         </div>
-
         <canvas ref={imageCanvasRef} style={{ display: "none" }}></canvas>
       </div>
     </div>

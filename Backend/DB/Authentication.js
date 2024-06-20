@@ -115,5 +115,17 @@ router.get('/usercokkie', cookiecheck, async (req,res)=>{
   
 });
 
+router.get('/logout', async (req,res)=>{
+  
+    console.log("User logged out backend call success");
+    
+    // Clear the 'pigeonJWT' cookie
+    res.clearCookie('pigeonJWT');
+    
+    // Send a response indicating successful logout
+    res.status(200).json({ message: 'Logout successful' });
+
+});
+
 module.exports = router;
 // kyu export krra hai jbki conn.js me to nhi krna pdra export...... and kb kb export krna pdta h???;

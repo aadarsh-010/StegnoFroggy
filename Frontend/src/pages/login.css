@@ -14,7 +14,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-image: url(../assets/BackG.jpg);
+  /* background-image: url(../assets/4ds.jpg); */
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
@@ -51,11 +51,11 @@
   border-radius: 5px; /* Round the corners */
   cursor: pointer; /* Change cursor to pointer on hover */
   text-align: center; /* Center text inside the button */
-  background-color: rgb(6, 91, 63);
+  background-color: rgb(87, 20, 52);
 }
 
 .submit-btn .submit:hover {
-  background-color: rgb(86, 58, 5); /* Change to muted orange on hover */
+  background-color: rgb(185, 80, 115); /* Change to muted orange on hover */
 }
 
 /* Active state (when the button is clicked) */

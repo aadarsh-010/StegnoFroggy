@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-
+import Userprofile from "./userprofileIcon";
 import "./CSS/navbar.css";
 
 function Navbar(props) {
@@ -75,20 +75,17 @@ function Navbar(props) {
                 </NavLink>
               </li>
               <li className="nav-item dis">
-                {props.usercame === true && (
-                  <img
-                    className="profile_icon grow"
-                    src="../assets/profile_icon.jpg"
-                    alt="Avatar"
-                  />
+                {props.flag == true && (
+                  <Userprofile logged_u={props.logged_user} />
+                  
                 )}
-                {props.usercame === false && (
+                {props.flag == false && (
                   <button
-                    className="signin_btn"
+                    className="btn btn-primary signin_btn"
                     type="button"
                     onClick={clickhandler}
                   >
-                    Signin
+                    Login
                   </button>
                 )}
               </li>

@@ -1,7 +1,8 @@
-import React from "react";
-import { useState, useRef, useEffect } from "react";
-import "./stag.css";
+import React, { useState, useRef, useEffect } from "react";
+import Cookies from "js-cookie";
+
 import Modal from "../components/modal";
+import "./stagp2t.css";
 
 export default function Stag2(props) {
   const [fileUploaded, setFileUploaded] = useState(false);
@@ -10,12 +11,26 @@ export default function Stag2(props) {
   const [receiver, setReceiver] = useState("");
   const [sender, setSender] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  
-  var user = "6668893e49e83469171654c6";
-  // var user = props.logged_user._id;
-  // if user not logged in then variable user will be undefined
-  //  console.log("user id - 0" + user);
+  const [user, setUser] = useState(null);
   const imageCanvas2Ref = useRef(null);
+
+  useEffect(() => {
+    // Debug: Check props.logged_user directly
+    console.log("Logged User from Props:", props.logged_user);
+
+    if (props.logged_user) {
+      setUser(props.logged_user._id);
+    } else {
+      // Try to get the user from a cookie as a fallback
+      const userCookie = Cookies.get("localhost");
+      if (userCookie) {
+        const userData = JSON.parse(userCookie);
+        setUser(userData._id);
+      } else {
+        console.error("User is undefined and no cookie found.");
+      }
+    }
+  }, [props.logged_user]); 
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -77,25 +92,32 @@ export default function Stag2(props) {
       }
     };
   };
+
   useEffect(() => {
     console.log("User:", user);
     console.log("Sender:", sender);
     console.log("Receiver:", receiver);
     console.log("Extracted Message:", extractedMessage);
-  }, [sender, receiver, extractedMessage]);
+  }, [user, sender, receiver, extractedMessage]);
+
+  // If user is still undefined, you may want to render a loading or error message
+  if (!user) {
+    return <div>Loading or user not found...</div>;
+  }
 
   return (
     <>
-      <div className="container">
-        <input type="file" onChange={handleImageUpload} />
-        <button onClick={() => extractMessage(24)} disabled={!fileUploaded}>
-          Extract Message
-        </button>
-
+      <div className="containerSTAGT">
+        <div className="select">
+          <input type="file" onChange={handleImageUpload} className="input_file"/>
+          <button className="stag2tss" onClick={() => extractMessage(24)} disabled={!fileUploaded}>
+            Extract Message
+          </button>
+        </div>
         <canvas ref={imageCanvas2Ref} style={{ display: "none" }}></canvas>
         <div className="result">
           <p>Hidden Image:</p>
-          {image && <img src={image} alt="Uploaded" width={50} height={50} />}
+          {image && <img className="imgst" src={image} alt="Uploaded" width={350} height={200} />}
 
           <textarea
             className="extracted-item"

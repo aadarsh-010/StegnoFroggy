@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./feedback.css";
 
-export default function FeedbackForm() {
+export default function FeedbackForm(props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -34,6 +34,7 @@ export default function FeedbackForm() {
   };
 
   return (
+    <div className="feedback_div" style={{background: props.maincol}}>
     <form className="feedback-form" onSubmit={handleSubmit}>
       <h2>Submit Your Feedback</h2>
       <label htmlFor="name">Name:</label>
@@ -61,5 +62,7 @@ export default function FeedbackForm() {
       />
       <button type="submit">Submit</button>
     </form>
+    <div className="purplebox" style={{background: props.maincol}}></div>
+    </div>
   );
 }

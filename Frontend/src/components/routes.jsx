@@ -33,7 +33,7 @@ export default function Proutes() {
       console.log("data came -" + data.username);
     } catch (err) {
       Cod(false);
-      console.log(data + " user login nhi hai");
+      console.log( " user login nhi hai");
     }
   };
 
@@ -44,7 +44,7 @@ export default function Proutes() {
 
   return (
     <BrowserRouter>
-    <Navbar usercame={flag}/>
+    <Navbar flag={flag} logged_user={logged_user_data}/>
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
