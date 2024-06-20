@@ -12,7 +12,19 @@ export default function Stag2(props) {
   const [sender, setSender] = useState("$$$$$$$$$$$$$$$$$$$$$$$$");
   const [sendername, setSendername] = useState("Anonymous sender");
   const [isOpen, setIsOpen] = useState(false);
+<<<<<<< HEAD
   const [user, setUser] = useState("$$$$$$$$$$$$$$$$$$$$$$$$");
+=======
+
+  
+  var user = props.logged_user._id;
+  // var user = props.logged_user._id;
+  // if user not logged in then variable user will be undefined
+  //  console.log("user id - 0" + user);
+
+  // const [user, setUser] = useState(null);
+
+>>>>>>> 7884fda (saf)
   const imageCanvas2Ref = useRef(null);
 
   const fetch_sender = async () => {
