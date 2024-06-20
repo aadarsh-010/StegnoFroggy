@@ -17,6 +17,7 @@ export default function Modal({ open, children, onclose, navigateto }) {
   const navigate = useNavigate();
   const navigateHome = () => {
     navigate("/");
+    window.location.reload(); 
   };
   return ReactDom.createPortal(
     open && (
