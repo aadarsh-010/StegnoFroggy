@@ -7,7 +7,7 @@ import { MdEmail } from "react-icons/md";
 import { useNavigate, Link } from "react-router-dom"; // Correct import for navigation
 
 import "./login.css";
-import Modal from "../components/modal";
+import Modal from "../components/modalLoginSignup";
 
 
 export default function Login() {
@@ -87,9 +87,6 @@ export default function Login() {
 
       <Modal
         open={isopen}
-        onclose={() => {
-          setisopen(false);
-        }}
         navigateto={true}
       >
         {message}

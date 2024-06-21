@@ -13,12 +13,25 @@ const MODAL_STYLES = {
   zIndex: 1000,
 };
 
-export default function Modal({ open, children, onclose, navigateto }) {
+export default function Modal({ open, children, navigateto }) {
+
   const navigate = useNavigate();
   const navigateHome = () => {
+    
     navigate("/");
     window.location.reload();
+    
   };
+
+  const onclose = () => {
+    
+    navigate("/");
+    window.location.reload();
+    
+  };
+
+  
+
   return ReactDom.createPortal(
     open && (
       <>

@@ -79,7 +79,6 @@ function Navbar(props) {
                     className="btn btn-primary signin_btn"
                     type="button"
                     onClick={clickhandler}
-                    style={{ backgroundColor: "#6e046d", color: "#fff" }}
                   >
                     Login
                   </button>

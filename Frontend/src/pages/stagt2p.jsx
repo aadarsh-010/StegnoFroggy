@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 
-import Modal from "../components/modal";
+import Modal from "../components/modalstag";
 import SearchBar from "../components/search";
 import "./stagt2p.css";
 

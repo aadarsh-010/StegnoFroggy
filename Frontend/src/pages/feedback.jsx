@@ -60,7 +60,7 @@ export default function FeedbackForm(props) {
         onChange={(e) => setMessage(e.target.value)}
         required
       />
-      <button type="submit">Submit</button>
+      <button className="buttonss" type="submit">Submit</button>
     </form>
     <div className="purplebox" style={{background: props.maincol}}></div>
     </div>

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 
-import Modal from "../components/modal";
+import Modal from "../components/modalstag";
 import "./stagp2t.css";
 
 export default function Stag2(props) {
@@ -12,7 +12,7 @@ export default function Stag2(props) {
   const [sender, setSender] = useState("$$$$$$$$$$$$$$$$$$$$$$$$");
   const [sendername, setSendername] = useState("Anonymous sender");
   const [isOpen, setIsOpen] = useState(false);
-
+  const [user, setUser] = useState("$$$$$$$$$$$$$$$$$$$$$$$$");
   const imageCanvas2Ref = useRef(null);
 
   const fetch_sender = async () => {

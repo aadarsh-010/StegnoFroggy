@@ -9,7 +9,7 @@ import { FaUser, FaLock } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
 import "./signup.css";
-import Modal from "../components/modal";
+import Modal from "../components/modalLoginSignup";
 
 export default function Signup() {
   const [nickname, setnickname] = useState("");
@@ -109,7 +109,7 @@ export default function Signup() {
         </Button>
       </Form.Group>
 
-      <Modal open={open} onclose={() => setopen(false)} navigateto={true}>
+      <Modal open={open} navigateto={true}>
         {message}
       </Modal>
 

@@ -33,7 +33,7 @@
   width: 100%;
 }
 
-.feedback-form > button {
+.feedback-form > .buttonss {
   margin-top: 15px;
   padding: 10px 20px;
   background-color: #007bff;
@@ -43,6 +43,6 @@
   cursor: pointer;
 }
 
-.feedback-form > button:hover {
+.feedback-form > .buttonss:hover {
   background-color: #0056b3;
 }
