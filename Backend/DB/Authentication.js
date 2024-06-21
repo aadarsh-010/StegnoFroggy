@@ -1,16 +1,19 @@
-const express = require("express");
-var bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+import express from 'express';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import User from './schema.js';
+import Feedback from './models/Feedback.js';
+import dotenv from 'dotenv';
+dotenv.config({path:"./config.env"});
 
-const User = require("./schema");
-const Feedback = require("./models/Feedback");
+import cookieParser from 'cookie-parser';
+import cookiecheck from './cookiecheck.js';
 
 const router = express.Router();
 
-const cookieParser = require("cookie-parser");
+
 router.use(cookieParser()); //middle ware hai taki kabhi bhi ye parser call ho to middle warecall jojaye
 
-const cookiecheck = require("./cookiecheck");
 
 router.get("/", (req, res) => {
   res.send("hello");
@@ -157,5 +160,5 @@ router.get('/logout', async (req,res)=>{
 
 });
 
-module.exports = router;
+export default router;
 // kyu export krra hai jbki conn.js me to nhi krna pdra export...... and kb kb export krna pdta h???;

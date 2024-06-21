@@ -1,6 +1,10 @@
-const mongoose = require("mongoose");
-var bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+
+//you hav to include these two things every wherer env is used if you have changed type as module
+import dotenv from 'dotenv';
+dotenv.config({path:"./config.env"});
 
 const userSchema =  new mongoose.Schema({
     nickname : {
@@ -45,4 +49,4 @@ userSchema.methods.generateAuthToken = async function(){
 
 const User = mongoose.model('USER',userSchema);
 
-module.exports = User;
+export default  User;

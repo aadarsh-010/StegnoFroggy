@@ -1,6 +1,8 @@
-const express = require('express');
-const User = require('./schema');
-const jwt = require('jsonwebtoken');
+import express from 'express';
+import User from './schema.js';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+dotenv.config({path:"./config.env"});
 
 const cookiecheck = async (req, res , next )=>{
     console.log("ha bhai");
@@ -29,4 +31,4 @@ const cookiecheck = async (req, res , next )=>{
         }
 }
 
-module.exports = cookiecheck;
+export default cookiecheck;
