@@ -12,7 +12,7 @@ export default function FeedbackForm(props) {
     const feedback = { name, email, message };
 
     try {
-      const response = await axios.post("http://localhost:5000/feedback", feedback, {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/feedback`, feedback, {
         headers: {
           'Content-Type': 'application/json',
         },

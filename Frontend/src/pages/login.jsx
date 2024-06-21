@@ -10,6 +10,7 @@ import "./login.css";
 import Modal from "../components/modalLoginSignup";
 
 
+
 export default function Login() {
   const navigate = useNavigate(); // Ensure this hook is at the top level of the functional component
   const [isopen, setisopen] = useState(false);
@@ -20,10 +21,12 @@ export default function Login() {
   const clickhandler = async (e) => {
     e.preventDefault();
     const login = { username, password };
+    // console.log("Attempting to log in with:", process.env.REACT_APP_BASE_URL);
 
     try {
       console.log("Attempting to log in with:", login);
-      const response = await axios.post("http://localhost:5000/login", login, {
+      //this is how you use .env var in vite and keep . env file where index.html is..
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/login`, login, {
         headers: {
           "Content-Type": "application/json",
         },

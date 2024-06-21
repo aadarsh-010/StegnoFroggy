@@ -18,7 +18,7 @@ export default function Proutes() {
 
   const fetchuser = async () => {
     try {
-      const userdata = await fetch("http://localhost:5000/usercokkie", {
+      const userdata = await fetch(`${import.meta.env.VITE_API_URL}/usercokkie`, {
         method: "GET",
         headers: {
           Accept: "application/json",

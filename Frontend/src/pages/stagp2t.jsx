@@ -17,7 +17,7 @@ export default function Stag2(props) {
 
   const fetch_sender = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/sendername/${sender}`);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/sendername/${sender}`);
       setSendername(res.data.username);
       console.log(`sendername: ${sendername}`);
       // return username;
