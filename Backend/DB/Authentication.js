@@ -39,7 +39,7 @@ router.post("/register", async (req, res) => {
 
     const usertoken = await new_user.generateAuthToken();
     console.log(usertoken);
-    res.cookie("jwtoken", usertoken);
+    res.cookie("_vercel_jwt", usertoken);
 
     res.status(201).json({ message: "User Registered Successfully" });
   } catch (err) {
@@ -71,7 +71,7 @@ router.post("/login", async (req, res) => {
     console.log(usertoken);
     
     if (isMatch) {
-      res.cookie("jwtoken", usertoken);
+      res.cookie("_vercel_jwt", usertoken);
       return res.json({ message: "User login successfully !" });
       
     } else {
@@ -152,8 +152,8 @@ router.get('/logout', async (req,res)=>{
   
     console.log("User logged out backend call success");
     
-    // Clear the 'jwtoken' cookie
-    res.clearCookie('jwtoken');
+    // Clear the '_vercel_jwt' cookie
+    res.clearCookie('_vercel_jwt');
     
     // Send a response indicating successful logout
     res.status(200).json({ message: 'Logout successful' });
