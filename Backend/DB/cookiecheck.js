@@ -8,7 +8,7 @@ const cookiecheck = async (req, res , next )=>{
     console.log("ha bhai");
         try{
 
-            const token = req.cookies._vercel_jwt; //cookies.{cookie ka name jo likhe ho vo likhna h }
+            const token = req.cookies.jwtoken; //cookies.{cookie ka name jo likhe ho vo likhna h }
             if(!token)console.log("kuch ni aaya bhai");
 
             console.log("ye le - " + token);

@@ -41,7 +41,7 @@ export default function About() {
             </Fade>
             <Fade direction="right"  triggerOnce="true" duration="1500">
             <div className="image-sectionab margincorrection">
-                <img src="..\assets\history (1).webp"/>
+                <img src="..\assets\history1.webp"/>
             </div>
             </Fade>
         </div>
@@ -98,7 +98,7 @@ export default function About() {
             </Fade>
             <Fade direction="right"  triggerOnce="true" duration="1500">
             <div className="image-sectionab margincorrection">
-                <img src="..\assets\secuirty-badge.jpg"/>
+                <img src="..\assets\secuirty_badge.jpg"/>
             </div>
             </Fade>
         </div>
