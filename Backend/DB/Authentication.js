@@ -39,14 +39,7 @@ router.post("/register", async (req, res) => {
 
     const usertoken = await new_user.generateAuthToken();
     console.log(usertoken);
-    res.cookie("pegionJWT", usertoken, {
-      // secure: true,  
-      // httpOnly: true,  
-      sameSite: 'None',  
-      domain: 'stegnofroggy-1.onrender.com',  // Set the appropriate domain
-      path: '/',  
-      maxAge: 24 * 60 *60*1000
-    });
+    res.cookie("pegionJWT", usertoken);
 
     res.status(201).json({ message: "User Registered Successfully" });
   } catch (err) {
@@ -78,14 +71,7 @@ router.post("/login", async (req, res) => {
     console.log(usertoken);
     
     if (isMatch) {
-      res.cookie("pegionJWT", usertoken,{
-        // secure: true,  
-        // httpOnly: true,  
-        sameSite: 'None',  
-        domain: 'stegnofroggy-1.onrender.com',  // Set the appropriate domain
-        path: '/',  
-        maxAge: 24 * 60 *60*1000
-      });
+      res.cookie("pegionJWT", usertoken);
       return res.json({ message: "User login successfully !" });
       
     } else {

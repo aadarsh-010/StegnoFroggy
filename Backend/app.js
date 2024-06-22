@@ -7,7 +7,7 @@ import cors from 'cors';
 //this thing is required to set so as to set cookies for owr website else using cores it will not allow to set cookies; 
 
 const corsOptions = {
-    origin: true, //included origin as true
+    origin: "https://stegno-froggy-ai8n4w3yk-aadarshs-projects-dda7b2b7.vercel.app/", //included origin as true
     credentials: true, //included credentials as true
 };
 app.use(cors(corsOptions));
