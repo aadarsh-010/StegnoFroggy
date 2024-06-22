@@ -39,7 +39,9 @@ router.post("/register", async (req, res) => {
 
     const usertoken = await new_user.generateAuthToken();
     console.log(usertoken);
-    res.cookie("pegionJWT", usertoken);
+    res.cookie("pegionJWT", usertoken,{
+      expires : new Date(Date.now() + 50000)    
+    });
 
     res.status(201).json({ message: "User Registered Successfully" });
   } catch (err) {
@@ -71,7 +73,9 @@ router.post("/login", async (req, res) => {
     console.log(usertoken);
     
     if (isMatch) {
-      res.cookie("pegionJWT", usertoken);
+      res.cookie("pegionJWT", usertoken,{
+        expires : new Date(Date.now() + 50000)    
+      });
       return res.json({ message: "User login successfully !" });
       
     } else {
