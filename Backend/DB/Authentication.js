@@ -40,7 +40,8 @@ router.post("/register", async (req, res) => {
     const usertoken = await new_user.generateAuthToken();
     console.log(usertoken);
     res.cookie("pegionJWT", usertoken,{
-      expires : new Date(Date.now() + 50000)    
+         httpOnly : true,
+         maxAge : 30*24*60*60*1000   
     });
 
     res.status(201).json({ message: "User Registered Successfully" });
@@ -74,7 +75,8 @@ router.post("/login", async (req, res) => {
     
     if (isMatch) {
       res.cookie("pegionJWT", usertoken,{
-        expires : new Date(Date.now() + 50000)    
+        httpOnly : true,
+         maxAge : 30*24*60*60*1000     
       });
       return res.json({ message: "User login successfully !" });
       
