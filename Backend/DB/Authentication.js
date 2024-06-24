@@ -43,7 +43,7 @@ router.post("/register", async (req, res) => {
       httpOnly: true,
       maxAge: 30 * 24 * 60 * 60 * 1000,
       secure: true, // Ensure this matches your environment (use false for http)
-      sameSite: 'Lax',
+      // sameSite: 'Lax',
       domain: '.onrender.com'   
     });
 
