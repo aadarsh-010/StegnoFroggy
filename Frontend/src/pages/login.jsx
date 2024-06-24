@@ -26,7 +26,8 @@ export default function Login() {
     try {
       console.log("Attempting to log in with:", login);
       //this is how you use .env var in vite and keep . env file where index.html is..
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/login`, login, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/login`, login, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },

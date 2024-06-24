@@ -31,10 +31,11 @@ export default function Signup() {
     });
 
     try {
-      const response = await axios.post(
+      const response = await fetch(
         `${import.meta.env.VITE_API_URL}/register`,
         { nickname, username, password },
         {
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
