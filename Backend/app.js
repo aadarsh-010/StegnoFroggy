@@ -7,8 +7,10 @@ import cors from 'cors';
 //this thing is required to set so as to set cookies for owr website else using cores it will not allow to set cookies; 
 
 const corsOptions = {
-    origin: true, //included origin as true
-    credentials: true, //included credentials as true
+    origin: 'https://stegnofroggy-1.onrender.com', // Allow only the frontend URL
+    credentials: true, // Allow credentials (cookies)
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
 };
 app.use(cors(corsOptions));
 
