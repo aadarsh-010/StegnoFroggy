@@ -10,7 +10,7 @@ import cookieParser from 'cookie-parser';
 import cookiecheck from './cookiecheck.js';
 
 const router = express.Router();
-
+router.use(cookieParser()); // Middleware for cookie parsing.....................................................
 
 router.use(cookieParser()); //middle ware hai taki kabhi bhi ye parser call ho to middle warecall jojaye
 
@@ -43,7 +43,7 @@ router.post("/register", async (req, res) => {
       httpOnly: true,
       maxAge: 30 * 24 * 60 * 60 * 1000,
       secure: true, // Ensure this matches your environment (use false for http)
-      sameSite: 'Lax',
+      sameSite: 'none',
       domain: 'onrender.com'    
     });
 
@@ -81,7 +81,7 @@ router.post("/login", async (req, res) => {
         httpOnly: true,
         maxAge: 30 * 24 * 60 * 60 * 1000,
         secure: true, // Ensure this matches your environment (use false for http)
-        sameSite: 'Lax',
+        sameSite: 'none',
         domain: 'onrender.com'      
       });
       return res.json({ message: "User login successfully !" });
