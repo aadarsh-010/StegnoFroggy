@@ -43,8 +43,8 @@ router.post("/register", async (req, res) => {
       httpOnly: true,
       maxAge: 30 * 24 * 60 * 60 * 1000,
       // secure: true, // Ensure this matches your environment (use false for http)
-      sameSite: 'none',
-      domain: '.onrender.com'    
+      // sameSite: 'none',
+      // domain: '.onrender.com'    
     });
 
     res.status(201).json({ message: "User Registered Successfully" });
@@ -81,8 +81,8 @@ router.post("/login", async (req, res) => {
         httpOnly: true,
         maxAge: 30 * 24 * 60 * 60 * 1000,
         // secure: true, // Ensure this matches your environment (use false for http)
-        sameSite: 'none',
-        domain: '.onrender.com'      
+        // sameSite: 'none',
+        // domain: '.onrender.com'      
       });
       return res.json({ message: "User login successfully !" });
       
