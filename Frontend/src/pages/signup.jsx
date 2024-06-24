@@ -35,6 +35,7 @@ export default function Signup() {
         `${import.meta.env.VITE_API_URL}/register`,
         {
           method: "POST",
+          crossDomain: true,
           headers: {
             "Content-Type": "application/json",
           },

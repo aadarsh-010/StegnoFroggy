@@ -28,6 +28,7 @@ export default function Login() {
       //this is how you use .env var in vite and keep . env file where index.html is..
       const response = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
         method: "POST",
+        crossDomain: true,
         headers: {
           "Content-Type": "application/json",
         },
