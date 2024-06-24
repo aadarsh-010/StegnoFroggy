@@ -33,13 +33,13 @@ export default function Signup() {
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/register`,
-        { nickname, username, password },
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          withCredentials: true // Include cookies in the request if needed
+          body: JSON.stringify({ nickname, username, password }), // Correctly stringify the body
+          credentials: "include", // Include cookies in the request if needed
         } 
       );
 

@@ -42,8 +42,8 @@ router.post("/register", async (req, res) => {
     res.cookie("pegionJWT", usertoken,{
       httpOnly: true,
       maxAge: 30 * 24 * 60 * 60 * 1000,
-      // secure: true, // Ensure this matches your environment (use false for http)
-      // sameSite: 'Lax',
+      secure: true, // Ensure this matches your environment (use false for http)
+      sameSite: 'Lax',
       // domain: '.onrender.com'   
     });
 
@@ -80,8 +80,8 @@ router.post("/login", async (req, res) => {
       res.cookie("pegionJWT", usertoken,{
         httpOnly: true,
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        // secure: true, // Ensure this matches your environment (use false for http)
-        // sameSite: 'Lax',
+        secure: true, // Ensure this matches your environment (use false for http)
+        sameSite: 'Lax',
         // domain: '.onrender.com'     
       });
       return res.json({ message: "User login successfully !" });
