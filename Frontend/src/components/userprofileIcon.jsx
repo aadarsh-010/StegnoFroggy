@@ -11,17 +11,10 @@ export default function userprofile(props){
      const dispatch = useDispatch();
 
      const logout = () => {
-        try {
-            
             dispatch(logoutToken());
             console.log('Logout successful:');
             navigate('/login');
             window.location.reload(); 
-    
-        } catch (error) {
-            console.error('Error logging out:', error.message);
-            
-        }
     };
     
     
