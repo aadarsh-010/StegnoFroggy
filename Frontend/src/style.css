@@ -9,7 +9,7 @@ body,
     height: 100%;
     /* background: slateblue;     */
     overflow-x: hidden;
-    background-image: url(../assets/BackG.jpg);
+    background-image: url(./public/BackG.jpg);
     /* background-image: #ffff; */
       background-size: 120%;
   background-repeat: no-repeat;
