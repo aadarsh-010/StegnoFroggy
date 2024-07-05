@@ -4,10 +4,10 @@ import Form from "react-bootstrap/Form";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-
+import { useDispatch, useSelector } from "react-redux";
 import { FaUser, FaLock } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-
+import { changeToken } from "../slice/token_slice";
 import "./signup.css";
 import Modal from "../components/modalLoginSignup";
 
@@ -17,6 +17,7 @@ export default function Signup() {
   const [password, setpassword] = useState("");
   const [message, setmessage] = useState("");
   const [open, setopen] = useState(false);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate(); // Ensure this hook is at the top level of the functional component
 
@@ -43,28 +44,26 @@ export default function Signup() {
           credentials: "include", // Include cookies in the request if needed
         } 
       );
+      const data = await response.json();
 
-      console.log("Response from server:", response);
+      if(response.ok){
+        dispatch(changeToken(data.token));
+      }
 
-      if (response.status === 200 || response.status === 201) {
+      console.log("Response from server:", data);
         setmessage("Registered successfully!");
         setnickname("");
         setusername("");
         setpassword("");
-        // setopen(true);
-        // navigate("/"); // Uncomment if you want to redirect upon successful registration
-      } else {
-        console.log("Registration failed with status:", response.status);
-        setmessage("Failed to register.");
-      }
+        
 
     } catch (error) {
       console.error("Error during registration:", error);
 
       // Log the response data if available
-      if (error.response) {
-        console.error("Error response data:", error.response.data);
-        console.error("Error response status:", error.response.status);
+      if (error.data) {
+        console.error("Error response data:", error.data.data);
+        console.error("Error response status:", error.data.status);
       }
       setmessage("An error occurred during registration.");
     }

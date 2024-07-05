@@ -39,15 +39,12 @@ router.post("/register", async (req, res) => {
 
     const usertoken = await new_user.generateAuthToken();
     console.log(usertoken);
-    res.cookie("pegionJWT", usertoken,{
-      // httpOnly: true,
-      maxAge: 30 * 24 * 60 * 60 * 1000,
-      // secure: true, // Ensure this matches your environment (use false for http)
-      // sameSite: 'none',
-      // domain: 'onrender.com'    
+    return res.json({
+      token : usertoken,
+      message: "User Registered Successfully !!"
     });
 
-    res.status(201).json({ message: "User Registered Successfully" });
+    
   } catch (err) {
     console.log(err);
   }
@@ -76,20 +73,9 @@ router.post("/login", async (req, res) => {
     const usertoken = await userlogin.generateAuthToken();
     console.log(usertoken);
     
-    if (isMatch) {
-      res.cookie("pegionJWT", usertoken,{
-        // httpOnly: true,
-        maxAge: 30 * 24 * 60 * 60 * 1000,
-        // secure: true, // Ensure this matches your environment (use false for http)
-        // sameSite: 'none',
-        // sameSite: 'none',
-        // domain: 'https://stegnofroggy-1.onrender.com'      
+       res.json({
+        token : usertoken
       });
-      return res.json({ message: "User login successfully !" });
-      
-    } else {
-      return res.status(400).json({ error: "Wrong credentials" });
-    }
   } catch (err) {
     console.log(err);
   }
@@ -161,17 +147,17 @@ router.get("/sendername/:id", async (req, res) => {
 });
 
 
-router.get('/logout', async (req,res)=>{
+// router.get('/logout', async (req,res)=>{
   
-    console.log("User logged out backend call success");
+//     console.log("User logged out backend call success");
     
-    // Clear the 'pegionJWT' cookie
-    res.clearCookie('pegionJWT');
+//     // Clear the 'pegionJWT' cookie
+//     res.clearCookie('pegionJWT');
     
-    // Send a response indicating successful logout
-    res.status(200).json({ message: 'Logout successful' });
+//     // Send a response indicating successful logout
+//     res.status(200).json({ message: 'Logout successful' });
 
-});
+// });
 
 export default router;
 // kyu export krra hai jbki conn.js me to nhi krna pdra export...... and kb kb export krna pdta h???;

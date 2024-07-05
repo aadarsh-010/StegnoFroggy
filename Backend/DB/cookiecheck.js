@@ -8,7 +8,11 @@ const cookiecheck = async (req, res , next )=>{
     console.log("ha bhai");
         try{
 
-            const token = req.cookies.pegionJWT; //cookies.{cookie ka name jo likhe ho vo likhna h }
+            if (!req.headers["authorization"])
+                return next(createHttpError.Unauthorized());
+              const bearerToken = req.headers["authorization"];
+              const token = bearerToken.split(" ")[1];
+              
             if(!token)console.log("kuch ni aaya bhai");
 
             console.log("ye le - " + token);

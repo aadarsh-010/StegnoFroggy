@@ -5,13 +5,14 @@ import axios from "axios";
 import { FaLock } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { useNavigate, Link } from "react-router-dom"; // Correct import for navigation
-
+import { useDispatch, useSelector } from "react-redux";
 import "./login.css";
 import Modal from "../components/modalLoginSignup";
-
+import { changeToken } from "../slice/token_slice";
 
 
 export default function Login() {
+  const dispatch = useDispatch();
   const navigate = useNavigate(); // Ensure this hook is at the top level of the functional component
   const [isopen, setisopen] = useState(false);
   const [username, setusername] = useState("");
@@ -35,19 +36,18 @@ export default function Login() {
         body: JSON.stringify(login), // Send the login object as the request body
         credentials: "include", // Include cookies in the request if needed
       });
+      const data = await response.json();
 
-      console.log("Response from server:", response);
-
-      if (response.status === 200) {
-        //alert("Logged in successfully!");
+      if(response.ok){
+        dispatch(changeToken(data.token));
+      }
+      
+      console.log("Response from server:", data);
+      
         setusername("");
         setpassword("");
         setmessage("Succesfully logged in !!");
-        // navigate("/"); // Uncomment if you want to redirect upon successful login
-      } else {
-        console.log("Login failed with status:", response.status);
-        setmessage("Failed to Log-in.");
-      }
+       
     } catch (error) {
       console.error("Error logging-in:", error);
       setmessage("An error occurred while trying to log-in.");

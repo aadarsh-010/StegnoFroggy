@@ -1,5 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
+import { Provider } from "react-redux";
+import { persistor, store } from "./store/store.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./style.css";
@@ -10,9 +12,9 @@ import Proutes from "./components/routes";
 const root = createRoot(document.querySelector("#root"));
 
 root.render(
-   <React.StrictMode>
+    <Provider store={store}>
     <Proutes/>
-   </React.StrictMode>
+    </Provider>
     
   
 );

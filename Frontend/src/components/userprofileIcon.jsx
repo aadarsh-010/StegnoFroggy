@@ -2,24 +2,18 @@
 import "./CSS/userprofile.css";
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import { logoutToken } from "../slice/token_slice";
 
 export default function userprofile(props){
      
      const navigate = useNavigate();
-  
+     const dispatch = useDispatch();
 
-     const logout = async () => {
+     const logout = () => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/logout`, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                credentials: 'include',  
-            });
-    
+            
+            dispatch(logoutToken());
             console.log('Logout successful:');
             navigate('/login');
             window.location.reload(); 

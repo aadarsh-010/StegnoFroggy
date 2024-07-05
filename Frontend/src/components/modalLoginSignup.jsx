@@ -19,14 +19,14 @@ export default function Modal({ open, children, navigateto }) {
   const navigateHome = () => {
     
     navigate("/");
-    // window.location.reload();
+    window.location.reload();
     
   };
 
   const onclose = () => {
     
     navigate("/");
-    // window.location.reload();
+    window.location.reload();
     
   };
 

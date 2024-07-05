@@ -10,9 +10,11 @@ import Stag2 from "../pages/stagp2t";
 import FeedbackForm from "../pages/feedback";
 import SearchBar from "./search";
 import About from "./about";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Proutes() {
 
+  const { token } = useSelector((state) => state.token);
   const [logged_user_data, chng] = useState({});
   const [flag, Cod] = useState(false);
 
@@ -22,6 +24,7 @@ export default function Proutes() {
         method: "GET",
         headers: {
           Accept: "application/json",
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
         credentials: "include",
