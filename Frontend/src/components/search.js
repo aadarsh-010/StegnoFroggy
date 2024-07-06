@@ -12,7 +12,7 @@ export default function SearchBar({ onSelectUser }) {
       if (query.length > 0 && !selectedUserId) {
         // Only fetch if there's a query and no user is selected
         try {
-          const response = await axios.get(`${import.meta.env.VITE_API_URL}/search`, {
+          const response = await axios.get(`${process.env.REACT_APP_API_URL}/search`, {
             params: { nickname: query }, // Adjust the query param name if necessary
           });
           setResults(response.data);
